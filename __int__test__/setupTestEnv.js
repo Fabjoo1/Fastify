@@ -15,11 +15,11 @@ module.exports = function setupTestEnv() {
                 await app.pg.query(clearTableSQL)
             })
 
-            beforeEach(async =>{
-                await.pg.query(insterFakeItemSQL, ["Test Item", "This is a test item", 20, 16.67, 3.33])
+            beforeEach(async() =>{
+                await app.pg.query(insterFakeItemSQL, ["Test Item", "This is a test item", 20, 16.67, 3.33])
             } )
 
-            afterEach(async=>{
+            afterEach(async()=>{
                 await app.pg.query(clearTableSQL)
             })
 

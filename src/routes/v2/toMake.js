@@ -1,3 +1,5 @@
+const vatCalculator = require('../../utils/vatCalculator')
+
 const toMake = {
     type: "object",
     properties: {
@@ -10,6 +12,9 @@ const toMake = {
       description: {
         type: "string",
       },
+      gross_amount : {
+        type: 'number'
+      }
     },
   };
 
@@ -21,6 +26,7 @@ const toMake = {
         properties: {
           name: { type: "string" },
           description: { type: "string" },
+          gross_amount : {type: 'number'}
         },
       },
       response: {
@@ -68,8 +74,11 @@ const toMake_v2 = async (fastify , options , done ) => {
         
         try {
             const client = await fastify.pg.connect();
-            const {name , description} = request.body;
-            const {rows} = await fastify.pg.query("Insert INTO items (name, desc ) VALUES ($1 ,$2)  RETURNING *" , [name , description]);
+            const {name , description, gross_amount} = request.body;
+            const netAmount = vatCalculator.calculateNetAmount(gross_amount)
+            const vetAmount = vatCalculator.calculateVAT(netAmount)
+
+            const {rows} = await fastify.pg.query("Insert INTO items (name, desc , gross_amount, net_amount , vetAount) VALUES ($1 ,$2 , $3, $4, $5)  RETURNING *" , [name , description , gross_amount, netAmount, vetAmount]);
             
             reply.code(201).send(rows[0]);
         }

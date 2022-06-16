@@ -1,8 +1,9 @@
+const { toMake_v2 } = require('../src/routes/v2/toMake');
 const setupTestEnv = require('./setupTestEnv')
 
 const app = setupTestEnv();
 
-describe("Integration test for CRUD operations connecnt to test postgres" {
+describe("Integration test for CRUD operations connecnt to test postgres", ()=> {
     test("Should create an item via POST ruote " , async ()=> {
         const item={
             name : 'Test item 2',

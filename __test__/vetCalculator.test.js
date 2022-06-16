@@ -11,4 +11,9 @@ describe("VAT calculator" , ()=>{
         except(result).toBe(20)
     })
 
+    test("Should return correct net amount for 20% VAT", ()=>{
+        const result = vatCalculator.calculateGroosAmmount(20)
+        except(result).toBe(16.67)
+    })
+
 })

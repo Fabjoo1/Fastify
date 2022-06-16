@@ -13,9 +13,7 @@ const gettoMake = (request, reply) => {
 const posttoMake = (request, reply) => {
   const { name, description } = request.body;
   const toMake = {
-    id: String(toMakes.length + 1),
-    name,
-    description,
+    id: String(toMakes.length + 1), name, description
   };
   toMakes.push(toMake);
   reply.code(201).send(toMake);
@@ -33,13 +31,7 @@ const updatedtoMake = (request, reply) => {
 const deletetoMake = (request, reply) => {
   const { id } = request.params;
   toMakes = toMakes.filter((toMake) => toMake.id !== id);
-  reply.send(`Item with ${id} got deleted!`);
+  reply.send(`The thing toMake with ${id} got deleted!`);
 };
 
-module.exports = {
-  gettoMakes,
-  gettoMake,
-  posttoMake,
-  updatedtoMake,
-  deletetoMake,
-};
+module.exports = { gettoMakes, gettoMake, posttoMake, updatedtoMake, deletetoMake };

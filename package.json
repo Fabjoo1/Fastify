@@ -4,20 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev" : "nodemon src/server.js",
+    "dev": "nodemon src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "fastify": "^4.0.2",
+    "jest": "^28.1.1",
     "nodemon": "^2.0.16"
   },
-  "dependecies" : {
-    "@fastify/postgres" : "^5.0.0",
-    "@fastify/swagger" : "7.3.0",
-    "fastify" : "^4.0.2",
-    "pg" : "^8.7.3"
-
+  "dependecies": {
+    "@fastify/postgres": "^5.0.0",
+    "@fastify/swagger": "7.3.0",
+    "fastify": "^4.0.2",
+    "pg": "^8.7.3"
   }
 }

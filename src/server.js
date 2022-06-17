@@ -1,16 +1,17 @@
 const {build} = require('./app')
+const env = require('./config/env')
 
 const app = build(
     {logger:true},
     {exposeRuote: true , 
-    ruotePrefix : "./docs" , 
+    ruotePrefix : "/docs" , 
     swagger : {info: {tittle: "Fastify API" , version : "1.0.0" }}},
     {
-        connectionString : 'postgres://postgres:postgres@localhost:5432/postgres'
+        connectionString : env.POSTGRES_DB_CONNECTION_STRING
     });
     
     
-app.get('./time' ,(req, reply)=>{
+app.get('/time' ,(req, reply)=>{
     app.pg.connect(onConnect)
     function onConnect (err, client, relase){
         if (err) return reply.send(err)
@@ -26,7 +27,7 @@ app.get('./time' ,(req, reply)=>{
 } )
 
 
-app.listen(3000, function(err, address){
+app.listen(env.WEB_APP_HOST_PORT, '0.0.0.0', function(err, address){
     if(err){
         app.log.error(err)
         process.exit(1)

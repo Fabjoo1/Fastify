@@ -2,23 +2,23 @@
   "name": "first-http-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
+    "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "test": "jest --coverage --runInBand" ,
-    "test:watch" : "jest --watchAll"
+    "test": "jest --coverage --runInBand",
+    "test:watch": "jest --watchAll"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fastify/postgres": "^5.0.0",
+    "@fastify/swagger": "^7.3.0",
+    "dotenv": "^16.0.1",
+    "envalid": "^7.3.1",
     "fastify": "^4.0.2",
     "jest": "^28.1.1",
-    "nodemon": "^2.0.16"
-  },
-  "dependecies": {
-    "@fastify/postgres": "^5.0.0",
-    "@fastify/swagger": "7.3.0",
-    "fastify": "^4.0.2",
+    "nodemon": "^2.0.16",
     "pg": "^8.7.3"
   }
 }

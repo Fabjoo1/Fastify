@@ -1,4 +1,4 @@
-let toMakes = require("../toMake");
+let toMakes = require('../ToMake');
 
 const gettoMakes = (request, reply) => {
   reply.send(toMakes);

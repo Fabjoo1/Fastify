@@ -1,5 +1,6 @@
 const vatCalculator = require('../../utils/vatCalculator')
 
+
 const toMake = {
     type: "object",
     properties: {
@@ -33,12 +34,11 @@ const toMake = {
         201: toMake,
       },
     },
-    handler: posttoMake,
   };
 
 const toMake_v2 = async (fastify , options , done ) => {
     
-    fastify.get('./', async (request , reply)=>{
+    fastify.get('/', async (request , reply)=>{
         try{
             const client = await fastify.pg.connect()
             const {rows} = await fastify.pg.query("SELECT * FROM items")
@@ -49,7 +49,7 @@ const toMake_v2 = async (fastify , options , done ) => {
         }  
     })
 
-    fastify.get('./:id', async(request, reply)=>{
+    fastify.get('/:id', async(request, reply)=>{
         try {
             const {id} = request.params
             const {rows} = await fastify.pg.query("SELECT * FROM items WHERE id=$1", [id])
@@ -59,7 +59,7 @@ const toMake_v2 = async (fastify , options , done ) => {
         }
     })
     
-    fastify.put('./:id' , async(request, reply)=>{
+    fastify.put('/:id' , async(request, reply)=>{
         try {
             const {id} = request.params
             const {name, description}=request.body
@@ -90,7 +90,7 @@ const toMake_v2 = async (fastify , options , done ) => {
         }
     })
     
-    fastify.delete('./:id', async(request, reply)=>{
+    fastify.delete('/:id', async(request, reply)=>{
         try {
             const {id} = request.params
             await fastify.pg.query("DELETE FROM items WHERE id=$1", [id])
